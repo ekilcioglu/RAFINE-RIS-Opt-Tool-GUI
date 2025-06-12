@@ -1,0 +1,225 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phase Error Performance Sensitivity Analysis &mdash; Ray-Tracing Based RIS Deployment Optimization for Coverage Enhancement  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Running RIS Joint Optimization Algorithm and Drawing Performance Evaluation Plots" href="running_opt_algorithm.html" />
+    <link rel="prev" title="Computing Combined Coverage Map with Custom RIS Parameters" href="computing_combined_coverage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Ray-Tracing Based RIS Deployment Optimization for Coverage Enhancement
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="new_scenario_creation_via_blender.html">New Scenario Creation in Blender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="new_scenario_addition_to_the_code.html">New Scenario Addition to the Source Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modifying_element_spacing_from_sionna_source_code.html">Modifying RIS Element Spacing (In Proportion to the Wavelength λ) from Sionna Source Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="computing_tx_cov_map.html">Computing Transmitter-Only Coverage Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finding_target_points_via_clustering.html">Finding RIS Target Points via K-means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="computing_feasible_RIS_positions.html">Computing Feasible RIS Positions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="showing_and_exporting_phase_profile.html">Showing and Exporting Phase Profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="computing_combined_coverage.html">Computing Combined Coverage Map with Custom RIS Parameters</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Phase Error Performance Sensitivity Analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#simulation-procedure">Simulation Procedure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-perform-phase-error-sensitivity-analysis-in-the-gui">How to Perform Phase Error Sensitivity Analysis in the GUI</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="running_opt_algorithm.html">Running RIS Joint Optimization Algorithm and Drawing Performance Evaluation Plots</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">RIS Optimization Module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ray-Tracing Based RIS Deployment Optimization for Coverage Enhancement</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Phase Error Performance Sensitivity Analysis</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/phase_error_performance_sensitivity_analysis.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="phase-error-performance-sensitivity-analysis">
+<h1>Phase Error Performance Sensitivity Analysis<a class="headerlink" href="#phase-error-performance-sensitivity-analysis" title="Link to this heading"></a></h1>
+<p>This tutorial explains how to analyze the sensitivity of performance when phase errors are introduced to the RIS elements within a specified delta range.</p>
+<section id="simulation-procedure">
+<h2>Simulation Procedure<a class="headerlink" href="#simulation-procedure" title="Link to this heading"></a></h2>
+<p>In this analysis, the following steps are followed:</p>
+<ol class="arabic">
+<li><p><strong>Ideal Phase Profile Calculation</strong>:
+The ideal phase profile for the RIS is computed for a given target configuration using the selected phase profile approach (e.g., Gradient-based, distance-based, or manual entry).</p></li>
+<li><p><strong>Introduction of Phase Errors</strong>:
+A uniform random phase error is added independently to each RIS element. The error for each element is sampled from a uniform distribution within <span class="math notranslate nohighlight">\([-\Delta, +\Delta]\)</span> radians:</p>
+<div class="math notranslate nohighlight">
+\[\epsilon_{n,m} \sim \mathcal{U}(-\Delta, +\Delta)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\epsilon_{n,m}\)</span> is the random phase error introduced to the <span class="math notranslate nohighlight">\((n,m)\)</span>-th RIS element, and <span class="math notranslate nohighlight">\(\Delta\)</span> is the maximum magnitude of the error (in radians, user-specified in degrees).</p>
+<p>The resulting phase profile after introducing phase errors becomes:</p>
+<div class="math notranslate nohighlight">
+\[\varphi_{n,m}^{\text{with error}} = \varphi_{n,m}^{\text{ideal}} + \epsilon_{n,m}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\varphi_{n,m}^{\text{ideal}}\)</span> denotes the original (ideal) phase value.</p>
+</li>
+<li><p><strong>Coverage Map Computation</strong>:
+Using the phase profile with errors, the coverage map is computed via a ray-tracing simulation.</p></li>
+<li><p><strong>Performance Metric Evaluation</strong>:
+The performance metric is evaluated as the average path gain of the predefined low-power cells.</p></li>
+<li><p><strong>Monte Carlo Averaging</strong>:
+Multiple realizations (random draws of phase errors) are performed for each delta value, and the average and standard deviation of the performance metric are computed across these realizations to obtain a statistically meaningful performance degradation curve.</p></li>
+<li><p><strong>Visualization</strong>:
+The average performance metric is plotted against the maximum phase error <span class="math notranslate nohighlight">\(\Delta\)</span> (in degrees), with error bars showing the standard deviation across realizations.</p></li>
+</ol>
+</section>
+<section id="how-to-perform-phase-error-sensitivity-analysis-in-the-gui">
+<h2>How to Perform Phase Error Sensitivity Analysis in the GUI<a class="headerlink" href="#how-to-perform-phase-error-sensitivity-analysis-in-the-gui" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before executing this step, you must first compute and visualize the <strong>transmitter-only coverage map</strong>.
+Please follow the <cite>Computing Transmitter-Only Coverage Map</cite> tutorial beforehand.</p>
+</div>
+<ol class="arabic">
+<li><p><strong>Define RIS Target Points</strong></p>
+<p>There are two ways to define the RIS target points:</p>
+<ul>
+<li><p><strong>Using the Target Points from Clustering</strong>:</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To use this option, you must first run the clustering algorithm to compute target points.
+Refer to the <cite>Finding RIS Target Points via K-means Clustering</cite> tutorial before proceeding.</p>
+</div>
+<p>In the GUI, select the radio button <strong>“Use the target point(s) found via clustering algorithm”</strong>.</p>
+</div></blockquote>
+</li>
+<li><p><strong>Manually Entering Target Point Coordinates</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Go to the labelframe <strong>“Manual trials”</strong> on the left side of the GUI.</p></li>
+<li><p>Enter the number of RIS target points in the field <strong>“Number of target points”</strong></p></li>
+<li><p>Select the checkbox <strong>“Enter the target point(s) manually”</strong>.</p></li>
+<li><p>A new input area will appear between the labelframe <strong>“Manual trials”</strong> and the labelframe <strong>“Optimization algorithm”</strong>.</p></li>
+<li><p>Enter the x, y, z coordinates for each target point manually.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>Enter RIS Parameters</strong></p>
+<ul class="simple">
+<li><p>Set the RIS center position under the labelframe <strong>“Enter RIS center position (m) (x,y,z)”</strong>.</p></li>
+<li><p>Set the RIS height and width under <strong>“RIS height (m)”</strong> and <strong>“RIS width (m)”</strong>, respectively.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To determine feasible RIS positions in the scene, refer to the <cite>Computing Feasible RIS Positions</cite> tutorial.</p>
+</div>
+</li>
+<li><p><strong>Conduct Sensitivity Analysis</strong></p>
+<ul class="simple">
+<li><p>Under the labelframe <strong>“Sensitivity analysis”</strong>, enter the minimum, maximum, and step values of <span class="math notranslate nohighlight">\(\Delta\)</span> (in degrees) to define the maximum phase error.</p></li>
+<li><p>Specify the number of realizations to consider for each delta value. The final performance value is the average across all realizations.</p></li>
+<li><p>Select which phase profile approaches (Gradient-based, distance-based, or manual) will be analyzed.</p></li>
+<li><p>Press the button <strong>“Start sensitivity analysis”</strong> to initiate the procedure.</p></li>
+<li><p>After execution, a figure will be generated showing the average performance metric versus <span class="math notranslate nohighlight">\(\Delta\)</span> (in degrees) for each selected approach, including error bars indicating standard deviation across random realizations. Two example figures are shown below for two different minimum path gain threshold considerations.</p></li>
+</ul>
+</li>
+</ol>
+<figure class="align-center" id="phase-error-performance-sensitivity-analysis-fig1" style="width: 80%">
+<img alt="../_images/phase_error_performance_sensitivity_analysis_Fig1.png" src="../_images/phase_error_performance_sensitivity_analysis_Fig1.png" />
+<figcaption>
+<p><span class="caption-text"><strong>Fig. 1</strong>: Changes in performance metric <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> (dB) vs. phase error magnitude <span class="math notranslate nohighlight">\(\Delta\)</span> (degrees) for different phase profile approaches with -100 dB minimum path gain threshold</span><a class="headerlink" href="#phase-error-performance-sensitivity-analysis-fig1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="phase-error-performance-sensitivity-analysis-fig2" style="width: 80%">
+<img alt="../_images/phase_error_performance_sensitivity_analysis_Fig2.png" src="../_images/phase_error_performance_sensitivity_analysis_Fig2.png" />
+<figcaption>
+<p><span class="caption-text"><strong>Fig. 1</strong>: Changes in performance metric <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> (dB) vs. phase error magnitude <span class="math notranslate nohighlight">\(\Delta\)</span> (degrees) for different phase profile approaches with -110 dB minimum path gain threshold</span><a class="headerlink" href="#phase-error-performance-sensitivity-analysis-fig2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="computing_combined_coverage.html" class="btn btn-neutral float-left" title="Computing Combined Coverage Map with Custom RIS Parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="running_opt_algorithm.html" class="btn btn-neutral float-right" title="Running RIS Joint Optimization Algorithm and Drawing Performance Evaluation Plots" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Communication Systems (CoSy) Group/ICTEAM/UCLouvain by Emre Kilcioglu and Claude Oestges.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
