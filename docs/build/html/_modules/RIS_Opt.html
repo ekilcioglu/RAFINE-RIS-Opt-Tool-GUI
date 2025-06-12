@@ -96,7 +96,7 @@
 <span class="c1">#import pyautogui</span>
 
 <span class="c1"># Plotting and Visualization</span>
-<span class="c1">#%matplotlib inline</span>
+<span class="c1"># %matplotlib inline</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">mcolors</span>
@@ -1111,7 +1111,7 @@
     
         <span class="c1"># Add text to the bottom-right corner of the binary poor coverage map</span>
         <span class="n">text_str</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;$P_</span><span class="se">{{\\</span><span class="s2">mathrm</span><span class="se">{{</span><span class="s2">th</span><span class="se">}}}}</span><span class="s2">$ = </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entry_threshold</span><span class="o">.</span><span class="n">get</span><span class="p">())</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> dB</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;$P_</span><span class="se">{{\\</span><span class="s2">mathrm</span><span class="se">{{</span><span class="s2">th</span><span class="se">}}}}</span><span class="s2">$ = </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entry_threshold</span><span class="o">.</span><span class="n">get</span><span class="p">())</span><span class="si">}</span><span class="s2"> dB</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="sa">f</span><span class="s2">&quot;Cov. ratio = </span><span class="si">{</span><span class="n">cov_ratio</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> %</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="sa">f</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">mathcal</span><span class="se">{{</span><span class="s2">M</span><span class="se">}}</span><span class="s2">$ = </span><span class="si">{</span><span class="n">avg_path_gain_low_power_cells</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> dB&quot;</span>
         <span class="p">)</span>
